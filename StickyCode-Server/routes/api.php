@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,8 @@ Route::group(["prefix"=>"v0.1"], function(){
       Route::get('/getusercodes',[CodeController::class, "getUserCodes"]);
       Route::get('/getcodetags',[CodeController::class, "getCodeTags"]);
       Route::post('/addcode',[CodeController::class, "creatCode"]);
-
+      Route::post('/addtag',[TagController::class, "createTag"]);
+        
     });
 
 

@@ -23,7 +23,7 @@ class CodeController extends Controller
         ]);
     }
     $user = Auth::user();
-    $code = new Code;
+    $code = new Code();
     $code->code_text = $request['code_text'];
     $code->language = $request['language'];
     $code->user_id = $user->id;

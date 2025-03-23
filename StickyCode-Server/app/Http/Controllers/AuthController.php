@@ -30,7 +30,7 @@ class AuthController extends Controller
         $user = Auth::user();
         $user->token = $token;
         return response()->json([
-                'status' => 'success',
+                'success' => true,
                 'user' => $user
             ]);
 
@@ -53,7 +53,7 @@ class AuthController extends Controller
         $token = Auth::login($user);
         $user->token = $token;
         return response()->json([
-            'status' => 'success',
+            'success' => true,
             'message' => 'User created successfully',
             'user' => $user,
         ]);

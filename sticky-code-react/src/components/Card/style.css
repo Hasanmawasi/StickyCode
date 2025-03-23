@@ -5,7 +5,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 16px;
     width: 320px;
-  
+    flex-grow: 1;
     overflow: hidden;
   }
   
@@ -44,7 +44,13 @@
     cursor: pointer;
     
   }
-  
+  .deleteicon{
+    cursor: pointer;
+    color: rgba(255, 0, 0, 0.879);
+  }
+  .favorite{
+    color: yellowgreen;
+  }
   
   .code {
     font-family: "Courier New", monospace;

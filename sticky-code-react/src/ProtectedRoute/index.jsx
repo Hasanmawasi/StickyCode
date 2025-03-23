@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { request, BaseUrl } from '../../utils/requests';
+import { request } from '../utils/request.js';
 import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRout = () => {
+const ProtectedRoute = () => {
     const [isload, setLoad] = useState(true);
     const [isAuth, setAuth] = useState(false);
 
     const validateToken = async ()=>{
         if(localStorage.getItem("token")){
-         const response = await   request({method:"POST",url:BaseUrl+"validateID",data:{
-                token:localStorage.getItem("token"),
-            }})
-            if(response.success){
+         const response = await   request(
+            {
+                method:"GET",
+                path:"validatetoken",
+                headers:{
+                    Authorization:localStorage.getItem("token"),
+            }
+        })
+            if(response?.success){
                 setAuth(true);
                 setLoad(false);
             }else{
                 setLoad(false);
                 setAuth(false);
+                localStorage.clear()
             }
         }else{
             setLoad(false);
@@ -44,4 +50,4 @@ const ProtectedRout = () => {
     )
 };
 
-export default ProtectedRout;
+export default ProtectedRoute;

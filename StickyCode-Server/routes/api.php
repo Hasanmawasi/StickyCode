@@ -16,7 +16,10 @@ Route::group(["prefix"=>"v0.1"], function(){
       Route::post('/addcode',[CodeController::class, "creatCode"]);
       Route::post('/addtag',[TagController::class, "createTag"]);
       Route::post('/addcodetag',[CodeController::class, "addCodeTag"]);
-
+      Route::post('/deletecode',[CodeController::class, "deleteCode"]);
+      Route::post('/deletetag',[TagController::class, "deleteTag"]);
+    Route::post('/setfavorite',[CodeController::class, "toggleFavorite"]);
+    Route::post('/search',[CodeController::class, "search"]);
     });
 
 

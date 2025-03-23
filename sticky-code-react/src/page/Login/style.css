@@ -16,3 +16,8 @@
     font-size: 20px;
     font-weight: 600;
   }
+  .failtext{
+    font-size: 18px;
+    font-weight: 800;
+    color: rgb(189, 36, 36);
+  }

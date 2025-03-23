@@ -59,7 +59,19 @@ class AuthController extends Controller
         ]);
     }
 
-    // function getCodes(){
-    //     echo "hello  coders";
-    // }
+    public function validatetoken(Request $request){
+        $token = $request->bearerToken();
+        if(!$token){
+            return response()->json([
+                "success"=>false,
+                "message"=> "unAuthorized"]
+            ,401);
+        }
+        $user = Auth::user();
+        return response()->json([
+            'success' => true,
+            'message' => 'Token is valid',
+            'data' => $user
+        ], 200);
+    }
 }

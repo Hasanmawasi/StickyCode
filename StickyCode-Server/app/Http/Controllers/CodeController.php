@@ -15,7 +15,36 @@ class CodeController extends Controller
            'language' => 'required|string|max:255',
         ]);
     }
-   public function creatCode(Request $request){
+    public function addCodeTag(Request $request){
+        $validator = Validator::make($request->all(), [
+            'tagids' => 'required|array',
+            'tagids.*' => 'integer|exists:tags,id',
+            'code_text' => 'required|string',
+            'language' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+
+        $code= $this->createCode($request);
+        if (!$code) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to create code'
+            ], 500);
+        }
+        $code->tags()->attach($request['tagids']);
+        return response()->json([
+            'success' => true,
+            'code' =>$code
+        ]);
+    }
+   public function createCode(Request $request){
     if($this->validateCodeInput($request)->fails()){
         return response()->json([
             'success' => false,
@@ -29,10 +58,11 @@ class CodeController extends Controller
     $code->user_id = $user->id;
     $code->is_favorite = 0;
     $code->save();
-    return response()->json([
-        'success' => true,
-        'codes' =>  $code,
-    ]);
+    return $code;
+    // response()->json([
+    //     'success' => true,
+    //     'codes' =>  $code,
+    // ]);
    }
    public function getUserCodes(){
    $user = Auth::user();
@@ -45,7 +75,14 @@ class CodeController extends Controller
    }
 
    public function getCodeTags(Request $request){
-    $code = Code::find($request['id']);
+    $id = $request['id'];
+    $code = Code::find($id);
+    if (!$code) {
+        return response()->json([
+            "success" => false,
+            "message" => "Code not found"
+        ], 404);
+    }
     $tags=  $code->tags;
     return response()->json([
         "success"=>true,

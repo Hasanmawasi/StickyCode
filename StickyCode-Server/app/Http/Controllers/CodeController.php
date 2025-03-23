@@ -66,11 +66,15 @@ class CodeController extends Controller
    }
    public function getUserCodes(){
    $user = Auth::user();
-   $codes= $user->codes;
-
+   $codes= $user->codes->where('user_id',$user->id);
+   $data =[];
+    foreach ($codes as $code) {
+     $data [] =  $code->tags->where('user_id',$user->id);
+    }
     return response()->json([
-        'status' => true,
+        'success' => true,
         'codes' =>  $codes,
+        // "data"=> $data,
     ]);
    }
 
@@ -97,5 +101,51 @@ class CodeController extends Controller
         "success"=>true,
         "tags"=>$tags,
     ]);
+   }
+   public function deleteCode(Request $request){
+
+    $id = $request['id'];
+    $code = Code::find($id);
+    if (!$code) {
+        return response()->json([
+            "success" => false,
+            "message" => "Code not found"
+        ], 404);
+    }
+    $code->where('id',$id)->delete();
+    return response()->json([
+        "success" => true,
+        "message" => "code deleted successfully",
+        "code"=>$code,
+    ]);
+   }
+
+   public function toggleFavorite(Request $request){
+    $id = $request['id'];
+    $code = Code::find($id);
+    if (!$code) {
+        return response()->json([
+            "success" => false,
+            "message" => "Code not found"
+        ], 404);
+    }
+    $favorite = $code->is_favorite;
+    $code->is_favorite= !$favorite;
+    $code->save();
+    return response()->json([
+        "success" => true,
+        "isFavorite" => $code->is_favorite
+    ],200);
+   }
+   public function search(Request $request){
+    $searchInput = $request['search'];
+    $user = Auth::user();
+    $result =Code::where('language', 'LIKE', "%{$searchInput}%")
+                    ->Where('user_id', $user->id)
+                    ->get();
+    return response()->json([
+        "success" => true,
+        "search" => $result
+    ],200);
    }
 }

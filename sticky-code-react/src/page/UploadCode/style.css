@@ -11,6 +11,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   gap: 40px;
 }
 
 .upload{
@@ -19,6 +20,7 @@
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
+    width: 70%;
 }
 .title{
     border-radius: 10px 10px 0 0;
@@ -44,4 +46,8 @@
 .tags{
     width: 90%;
     flex-wrap: wrap;
+   
+}
+.marign-bottom{
+    margin-bottom: 50px;
 }

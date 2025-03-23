@@ -30,4 +30,20 @@ class TagController extends Controller
         'tag' =>  $tag,
     ]);
     }
+    public function deleteTag(Request $request){
+        $id = $request['id'];
+        $tag= Tag::find($id);
+        if (!$tag) {
+            return response()->json([
+                "success" => false,
+                "message" => "Tag not found"
+            ], 404);
+        }
+        $tag->where('id',$id)->delete();
+        return response()->json([
+            "success" => true,
+            "message" => "Tag deleted successfully",
+            "code"=>$tag,
+        ]);
+    }
 }

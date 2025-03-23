@@ -1,0 +1,26 @@
+ 
+ 
+ 
+ .search-input{
+    border: none;
+    border-top: 1px solid  #4a90e2;
+    border-left: 1px solid  #4a90e2;
+    border-bottom: 1px solid  #4a90e2;
+    border-radius: 5px 0  0 5px;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+.search-input:focus{
+    outline: none;
+}
+
+.search-icon{
+    background-color: #4a90e2;
+    padding: 6px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.icon{
+    color: white;
+}

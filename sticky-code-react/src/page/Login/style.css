@@ -1,0 +1,18 @@
+
+.login-card{
+    margin: 15px;
+    max-width: 500px;
+    /* height: 20rem; */
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    flex-grow: 1;
+  }
+  .login-body{
+    height: 90vh;
+  }
+  .link{
+    font-size: 20px;
+    font-weight: 600;
+  }

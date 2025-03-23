@@ -1,0 +1,11 @@
+.body{
+    height: 100vh;
+    background-color:  #F8F9FA       ;
+}
+.container{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}

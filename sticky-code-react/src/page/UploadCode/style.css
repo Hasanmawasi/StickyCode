@@ -1,0 +1,47 @@
+.checkbox{
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 2px
+}
+.upload-container{
+    width: 100%;
+   text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.upload{
+    border-radius: 10px;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+.title{
+    border-radius: 10px 10px 0 0;
+    background-color: #4a90e2;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    color: #ffffff;
+    
+}
+.title::before{
+    content: "";
+    position: absolute;
+    height: 15px;
+    background-color: #4a90e2;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    clip-path: ellipse(50% 100% at 50% 0%);
+}
+
+.tags{
+    width: 90%;
+    flex-wrap: wrap;
+}

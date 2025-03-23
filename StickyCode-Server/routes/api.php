@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(["prefix"=>"v0.1"], function(){
 
   Route::group(["middleware" => "auth:api"], function(){
-
+        Route::get('/validatetoken',[AuthController::class,"validateToken"]);
       Route::get('/getusertags',[CodeController::class, "getUserTags"]);
       Route::get('/getusercodes',[CodeController::class, "getUserCodes"]);
       Route::post('/getcodetags',[CodeController::class, "getCodeTags"]);
